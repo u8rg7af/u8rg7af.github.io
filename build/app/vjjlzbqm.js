@@ -1,0 +1,2 @@
+/*! Built with http://stenciljs.com */
+const{h:e}=window.App;import{Highscore as l}from"./chunk1.js";class n{render(){let n=l.getHighscore(),r=[];for(let l of n)r.push(e("p",null,e("b",null,l.score,":")," ",new Date(l.date).toLocaleDateString()));return e("div",null,e("header",null,e("h1",null,"Highscore")),e("main",null,r))}static get is(){return"sn-highscore"}}export{n as SnHighscore};
