@@ -30,6 +30,8 @@ function geoFindMe() {
 
   navigator.geolocation.getCurrentPosition(success, error);
 }
+
+setInterval(getLocation, 500);
 </script>
 </head>
 
