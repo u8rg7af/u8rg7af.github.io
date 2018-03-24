@@ -2,9 +2,9 @@
 <html>
 <body>
 
-<p>Click the button to get your coordinates.</p>
+<p>Button drücken um Koordinaten zu erhalten:</p>
 
-<button onclick="getLocation()">Try It</button>
+<button onclick="getLocation()">Koordinaten</button>
 
 <p id="demo"></p>
 
@@ -15,13 +15,13 @@ function getLocation() {
     if (navigator.geolocation) {
         navigator.geolocation.getCurrentPosition(showPosition);
     } else { 
-        x.innerHTML = "Geolocation is not supported by this browser.";
+        x.innerHTML = "Geolocation wird im Browser nicht unterstützt";
     }
 }
 
 function showPosition(position) {
-    x.innerHTML = "Latitude: " + position.coords.latitude + 
-    "<br>Longitude: " + position.coords.longitude;
+    x.innerHTML = "Breitengrad: " + position.coords.latitude + 
+    "<br>Längengrad: " + position.coords.longitude;
 }
 </script>
 
