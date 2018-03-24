@@ -17,7 +17,7 @@ var doneIcon = new LeafIcon({
 })
 
 
-L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png' , {
+L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png' , {
   attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 }).addTo( mymap );
 var marker = L.marker([47.583807, 12.1736679], {icon: openIcon}).bindPopup("Kaffee?").addTo(mymap);
@@ -41,8 +41,8 @@ if (!navigator.geolocation){
     
     var geo_options = {
         enableHighAccuracy: false, 
-        maximumAge        : 30000, 
-        timeout           : 27000
+        maximumAge        : 5000, 
+        timeout           : 4000
     };
     
     navigator.geolocation.watchPosition(success, error, geo_options);
