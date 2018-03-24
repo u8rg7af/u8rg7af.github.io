@@ -40,7 +40,7 @@ function getLocation() {
 function showPosition(position) {
     // x.innerHTML = "Breitengrad: " + position.coords.latitude + 
     // "<br>Längengrad: " + position.coords.longitude;
-    //L.marker([position.coords.latitude,position.coords.longitude]).bindPopup("Der Weg ist das Ziel.").addTo(mymap)
+    L.marker([position.coords.latitude,position.coords.longitude]).bindPopup("Der Weg ist das Ziel.").addTo(mymap)
     console.log(position.coords.latitude)
 }
 
