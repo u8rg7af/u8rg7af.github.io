@@ -6,12 +6,14 @@ function geoFindMe() {
   var output = document.getElementById("out");
 
   if (!navigator.geolocation){
-    output.innerHTML = "<p>Geolokation wird von ihrem Browser nicht unterst�tzt</p>";
+    output.innerHTML = "<p>Geolokation wird von ihrem Browser nicht unterstuetzt</p>";
     return;
   }
 
   function success(position) {
     var latitude  = position.coords.latitude;
+    console.log(position.coords.longitude);
+    console.log(position.coords.latitude);
     var longitude = position.coords.longitude;
 
     output.innerHTML = '<p>Die Latitude ist ' + latitude + '� <br>Die Longitude ist ' + longitude + '�</p>';
@@ -31,7 +33,7 @@ function geoFindMe() {
   navigator.geolocation.getCurrentPosition(success, error);
 }
 
-setInterval(getLocation, 500);
+setInterval(geoFindMe, 1000);
 </script>
 </head>
 
