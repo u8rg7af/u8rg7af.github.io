@@ -23,6 +23,8 @@ function showPosition(position) {
     x.innerHTML = "Breitengrad: " + position.coords.latitude + 
     "<br>Längengrad: " + position.coords.longitude;
 }
+
+setInterval(getLocation, 500);
 </script>
 
 </body>
