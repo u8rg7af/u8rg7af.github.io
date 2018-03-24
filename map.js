@@ -27,7 +27,7 @@ var marker3 = L.marker([47.583707, 12.173579], {icon: openIcon}).bindPopup("Kaff
 var marker4 = L.marker([47.583807, 12.173579], {icon: openIcon}).bindPopup("Kaffee?").addTo(mymap);
 
 mymap.removeControl(mymap.zoomControl);
-setInterval(getLocation,30000);
+setInterval(getLocation,2000);
 
 function getLocation() {
     if (navigator.geolocation) {
