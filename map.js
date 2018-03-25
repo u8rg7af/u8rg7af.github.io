@@ -18,6 +18,8 @@ var doneIcon = new LeafIcon({
     iconUrl: 'heart.png',
 })
 
+var doneCnt = 0;
+var navWatch;
 
 L.tileLayer('https://maps4.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg' , {
 }).addTo( mymap );
@@ -28,11 +30,11 @@ var destCoord = [                               //destination markers
     [47.583707, 12.173279],
     [47.583707, 12.173679],
     [47.360707, 11.823679]];               
-var destMarker1 = L.marker(destCoord[0], {icon: toDoIcon}).bindPopup("Kaffee?").addTo(mymap);
-var destMarker2 = L.marker(destCoord[1], {icon: toDoIcon}).bindPopup("Kaffee?").addTo(mymap);
-var destMarker3 = L.marker(destCoord[2], {icon: toDoIcon}).bindPopup("Kaffee?").addTo(mymap);
-var destMarker4 = L.marker(destCoord[3], {icon: toDoIcon}).bindPopup("Kaffee?").addTo(mymap);
-var destMarker5 = L.marker(destCoord[4], {icon: toDoIcon}).bindPopup("Kaffee?").addTo(mymap);
+var destMarker1 = L.marker(destCoord[0], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
+var destMarker2 = L.marker(destCoord[1], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
+var destMarker3 = L.marker(destCoord[2], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
+var destMarker4 = L.marker(destCoord[3], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
+var destMarker5 = L.marker(destCoord[4], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarkers = [destMarker1, destMarker2, destMarker3, destMarker4, destMarker5];     
 var currPosMarker;                              //curren position marker
 mymap.removeControl(mymap.zoomControl);
@@ -49,27 +51,46 @@ if (!navigator.geolocation){
             currPosMarker.setLatLng(currPosition);                                              //update position of existing marker
         }
         for(var i = 0; i < destCoord.length; i++){
-            if(currPosition.distanceTo(destCoord[i]) < 40000.0){
+            if(currPosition.distanceTo(destCoord[i]) < 3.0){
                 destMarkers[i].setIcon(doneIcon);
                 destMarkers[i].bindPopup("You have already been here.")
             }else{
                 if(destMarkers[i].getPopup().getContent() != "You have already been here."){
-                    destMarkers[i].bindPopup("Noch " + Math.round(currPosition.distanceTo(destCoord[i]) * 10)/10 + " Meter");
+                    destMarkers[i].bindPopup("Still " + Math.round(currPosition.distanceTo(destCoord[i]) * 10)/10 + " meters");
+                    doneCnt++;
+                    if(doneCnt == 4){
+                        quitWatch();
+                    }
                 }
             }
         }
     }
-    
-    function error() {
-        // alert("Sorry, no position available.");
-        console.log("watchPosition: error");
+
+    /* Error Handling
+    for details see https://developer.mozilla.org/en-US/docs/Web/API/Geolocation/watchPosition */
+    function error(e) {                                                     
+        switch(e.code){
+            case e.PERMISSION_DENIED:
+                console.log("Error: Permission denied");
+                break;
+            case e.POSITION_UNAVAILABLE:
+                console.log("Error: Position unavailable");
+                break;
+            case e.TIMEOUT:
+                console.log("Error: Timeout");
+                break;
+        }
+    }
+
+    function quitWatch(){
+        navigator.geolocation.clearWatch(navWatch);
     }
     
     var geo_options = {
-        enableHighAccuracy: false, 
+        enableHighAccuracy: false,                                            //improve performance
         maximumAge        : 0, 
         timeout           : 10000
     };
     
-    navigator.geolocation.watchPosition(success, error, geo_options);
+    navWatch = navigator.geolocation.watchPosition(success, error, geo_options);
   }
