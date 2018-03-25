@@ -13,9 +13,17 @@
 
         <meta http-equiv="Pragma" content="no-cache">
         <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />        <link rel="stylesheet" href="style.css">
+    
     </head>
     <body>
         <div id="mapid"></div>
         <script src="map.js"></script>
+        <script>
+            if('serviceWorker' in navigator) {
+              navigator.serviceWorker
+                       .register('sw.js')
+                       .then(function() { console.log("Service Worker Registered"); });
+            }
+            </script>
     </body>
 </html>
