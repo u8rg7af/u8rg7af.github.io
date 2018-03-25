@@ -18,7 +18,6 @@ var doneIcon = new LeafIcon({
 
 
 L.tileLayer('https://maps4.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg' , {
-  attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors',
 }).addTo( mymap );
 var marker = L.marker([47.583807, 12.1736679], {icon: openIcon}).bindPopup("Kaffee?").addTo(mymap);
 var marker2 = L.marker([47.583707, 12.173679], {icon: openIcon}).bindPopup("Kaffee?").addTo(mymap);
