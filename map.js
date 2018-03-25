@@ -24,19 +24,21 @@ var navWatch;
 L.tileLayer('https://maps4.wien.gv.at/basemap/bmaporthofoto30cm/normal/google3857/{z}/{y}/{x}.jpeg' , {
 }).addTo( mymap );
 
-var destCoord = [                               //destination markers
+var destCoord = [                                                                               //destination markers
     [47.583857, 12.173269],
     [47.583857, 12.173679],
     [47.583707, 12.173279],
     [47.583707, 12.173679],
-    [47.360707, 11.823679]];               
+    [47.264222, 11.386016],
+    [47.267130, 11.395649]];               
 var destMarker1 = L.marker(destCoord[0], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarker2 = L.marker(destCoord[1], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarker3 = L.marker(destCoord[2], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarker4 = L.marker(destCoord[3], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarker5 = L.marker(destCoord[4], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
-var destMarkers = [destMarker1, destMarker2, destMarker3, destMarker4, destMarker5];     
-var currPosMarker;                              //curren position marker
+var destMarker6 = L.marker(destCoord[5], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
+var destMarkers = [destMarker1, destMarker2, destMarker3, destMarker4, destMarker5, destMarker6];     
+var currPosMarker;                                                                              //current position marker
 mymap.removeControl(mymap.zoomControl);
 
 if (!navigator.geolocation){
@@ -46,12 +48,12 @@ if (!navigator.geolocation){
         console.log(position.coords.latitude);
         var currPosition = L.latLng(position.coords.latitude,position.coords.longitude);        //coordinates of the current position as latLng
         if(currPosMarker === undefined){                                                        
-            currPosMarker = new L.marker(currPosition).addTo(mymap);                            //for the first time, create markter
+            currPosMarker = new L.marker(currPosition).bindPopup("You are here").addTo(mymap);                            //for the first time, create markter
         }else{
             currPosMarker.setLatLng(currPosition);                                              //update position of existing marker
         }
         for(var i = 0; i < destCoord.length; i++){
-            if(currPosition.distanceTo(destCoord[i]) < 3.0){
+            if(currPosition.distanceTo(destCoord[i]) < 8.0){
                 destMarkers[i].setIcon(doneIcon);
                 destMarkers[i].bindPopup("You have already been here.")
             }else{
