@@ -89,9 +89,10 @@ if (!navigator.geolocation){
     }
     
     var geo_options = {
-        enableHighAccuracy: false,                                            //improve performance
-        maximumAge        : 0, 
-        timeout           : 10000
+        enableHighAccuracy  : false,                                            //improve performance
+        maximumAge          : 0, 
+        timeout             : 10000,
+        distanceFilter      : 5
     };
     
     navWatch = navigator.geolocation.watchPosition(success, error, geo_options);
