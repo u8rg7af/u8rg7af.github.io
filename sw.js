@@ -21,6 +21,7 @@ var urlsToCache = [
   'map.js',
   'style.css',
   'index.html',
+  'manifest.json',
   'https://unpkg.com/leaflet@1.3.1/dist/leaflet.js',
   'https://unpkg.com/leaflet@1.3.1/dist/leaflet.css',
   'https://unpkg.com/leaflet@1.3.1/dist/images/marker-icon.png',
@@ -71,7 +72,7 @@ self.addEventListener('fetch', function (event) {
           if(res){
               return res;
           }
-          requestBackend(event);
+          return requestBackend(event);
       })
   )
 });

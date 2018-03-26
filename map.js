@@ -6,8 +6,8 @@ mymap = L.map('mapid').fitBounds(bounds);
 var LeafIcon = L.Icon.extend({
     options: {
        iconSize:     [38, 40],
-       iconAnchor:   [22, 94],
-       popupAnchor:  [-3, -76]
+       iconAnchor:   [38, 0],
+       popupAnchor:  [-5, 0]
     }
 });
 var toDoIcon = new LeafIcon({
@@ -30,15 +30,24 @@ var destCoord = [                                                               
     [47.583707, 12.173279],
     [47.583707, 12.173679],
     [47.264222, 11.386016],
-    [47.267130, 11.395649]];               
+    [47.266888, 11.393164],
+    [47.250874, 11.405436]];               
 var destMarker1 = L.marker(destCoord[0], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarker2 = L.marker(destCoord[1], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarker3 = L.marker(destCoord[2], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarker4 = L.marker(destCoord[3], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarker5 = L.marker(destCoord[4], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarker6 = L.marker(destCoord[5], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
-var destMarkers = [destMarker1, destMarker2, destMarker3, destMarker4, destMarker5, destMarker6];     
-var currPosMarker;                                                                              //current position marker
+var destMarker7 = L.marker(destCoord[6], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
+var destMarkers = [destMarker1, destMarker2, destMarker3, destMarker4, destMarker5, destMarker6, destMarker7];     
+var currPosMarker;  
+
+//start: delete after testing
+var para = document.createElement("p");   
+var newline = document.createElement("br"); 
+var lineCnt = 0;
+//end: delete after testing
+                                                                        //current position marker
 mymap.removeControl(mymap.zoomControl);
 
 if (!navigator.geolocation){
@@ -46,6 +55,16 @@ if (!navigator.geolocation){
   }else{
     function success(position) {
         console.log(position.coords.latitude);
+
+        //start: delete after testing
+        /**Display the coordinates -> for bugfixing */
+        if(lineCnt == 0){
+            para.appendChild(document.createTextNode(position.coords.latitude + ", " + position.coords.longitude));
+            document.getElementsByClassName("leaflet-control-attribution leaflet-control")[0].appendChild(para);
+            document.getElementsByClassName("leaflet-control-attribution leaflet-control")[0].appendChild(newline);
+            lineCnt++;
+        }
+        //end: delete after testing
         var currPosition = L.latLng(position.coords.latitude,position.coords.longitude);        //coordinates of the current position as latLng
         if(currPosMarker === undefined){                                                        
             currPosMarker = new L.marker(currPosition).bindPopup("You are here").addTo(mymap);                            //for the first time, create markter
@@ -53,7 +72,7 @@ if (!navigator.geolocation){
             currPosMarker.setLatLng(currPosition);                                              //update position of existing marker
         }
         for(var i = 0; i < destCoord.length; i++){
-            if(currPosition.distanceTo(destCoord[i]) < 8.0){
+            if(currPosition.distanceTo(destCoord[i]) < 15.0){
                 destMarkers[i].setIcon(doneIcon);
                 destMarkers[i].bindPopup("You have already been here.")
             }else{
@@ -66,6 +85,9 @@ if (!navigator.geolocation){
                 }
             }
         }
+        //start: delete after testing
+        lineCnt = 0;
+        //end: delete after testing
     }
 
     /* Error Handling
@@ -91,9 +113,14 @@ if (!navigator.geolocation){
     var geo_options = {
         enableHighAccuracy  : true,                                            //improve performance on false
         maximumAge          : 0, 
-        timeout             : 200,												//milliseconds until new position is fetched
+        timeout             : 2000,												//milliseconds until new position is fetched
         distanceFilter      : 1													//in meters
     };
     
-    navWatch = navigator.geolocation.watchPosition(success, error, geo_options);
+    setInterval(getPosition, 400);
+    //navWatch = navigator.geolocation.watchPosition(success, error, geo_options);
+    function getPosition(){
+        navWatch = navigator.geolocation.getCurrentPosition(success, error, geo_options);
+    }
+    
   }
