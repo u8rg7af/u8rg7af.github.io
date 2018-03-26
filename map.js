@@ -89,10 +89,10 @@ if (!navigator.geolocation){
     }
     
     var geo_options = {
-        enableHighAccuracy  : false,                                            //improve performance
+        enableHighAccuracy  : true,                                            //improve performance on false
         maximumAge          : 0, 
-        timeout             : 10000,
-        distanceFilter      : 5
+        timeout             : 200,												//milliseconds until new position is fetched
+        distanceFilter      : 1													//in meters
     };
     
     navWatch = navigator.geolocation.watchPosition(success, error, geo_options);
