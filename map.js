@@ -59,10 +59,10 @@ if (!navigator.geolocation){
         //start: delete after testing
         /**Display the coordinates -> for bugfixing */
         if(lineCnt == 0){
-            para.appendChild(document.createTextNode(position.coords.latitude + ", " + position.coords.longitude));
-            document.getElementsByClassName("leaflet-control-attribution leaflet-control")[0].appendChild(para);
-            document.getElementsByClassName("leaflet-control-attribution leaflet-control")[0].appendChild(newline);
-            lineCnt++;
+            // para.appendChild(document.createTextNode(position.coords.latitude + ", " + position.coords.longitude));
+            // document.getElementsByClassName("leaflet-control-attribution leaflet-control")[0].appendChild(para);
+            // document.getElementsByClassName("leaflet-control-attribution leaflet-control")[0].appendChild(newline);
+            // lineCnt++;
         }
         //end: delete after testing
         var currPosition = L.latLng(position.coords.latitude,position.coords.longitude);        //coordinates of the current position as latLng
