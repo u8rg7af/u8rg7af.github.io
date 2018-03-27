@@ -117,10 +117,10 @@ if (!navigator.geolocation){
         distanceFilter      : 1													//in meters
     };
     
-    setInterval(getPosition, 400);
-    //navWatch = navigator.geolocation.watchPosition(success, error, geo_options);
-    function getPosition(){
-        navWatch = navigator.geolocation.getCurrentPosition(success, error, geo_options);
-    }
+    //setInterval(getPosition, 400);
+    navWatch = navigator.geolocation.watchPosition(success, error, geo_options);
+    //function getPosition(){
+    //    navWatch = navigator.geolocation.getCurrentPosition(success, error, geo_options);
+    //}
     
   }
