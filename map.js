@@ -1,6 +1,6 @@
 // var mymap = L.map('mapid').setView([47.583807, 12.1736679], 9);      //location of fh kufstein
 
-var bounds = L.latLngBounds([47.35, 11.3], [47.589, 12.19])             //location with innsbruck (for testing)
+var bounds = L.latLngBounds([47.45, 12.0], [47.589, 12.19])             //location with innsbruck (for testing)
 mymap = L.map('mapid').fitBounds(bounds);
 
 var LeafIcon = L.Icon.extend({
@@ -29,17 +29,13 @@ var destCoord = [                                                               
     [47.583857, 12.173679],
     [47.583707, 12.173279],
     [47.583707, 12.173679],
-    [47.264222, 11.386016],
-    [47.266888, 11.393164],
-    [47.250874, 11.405436]];               
+    [47.554475, 12.158497]];               
 var destMarker1 = L.marker(destCoord[0], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarker2 = L.marker(destCoord[1], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarker3 = L.marker(destCoord[2], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarker4 = L.marker(destCoord[3], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarker5 = L.marker(destCoord[4], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
-var destMarker6 = L.marker(destCoord[5], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
-var destMarker7 = L.marker(destCoord[6], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
-var destMarkers = [destMarker1, destMarker2, destMarker3, destMarker4, destMarker5, destMarker6, destMarker7];     
+var destMarkers = [destMarker1, destMarker2, destMarker3, destMarker4, destMarker5];     
 var currPosMarker;  
 
 //start: delete after testing
