@@ -1,10 +1,10 @@
 {
     "name": "EBMI Map App",
     "short_name": "MapApp",
-    "start_url": "index.html?launcher=true",
+    "start_url": "/",
     "icons": [{
-      "src": "heart.png",
-      "sizes": "256x256",
+      "src": "heart_big.png",
+      "sizes": "512x512",
       "type": "image/png"
     }],
     "theme_color": "#000000",
