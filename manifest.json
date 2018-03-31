@@ -5,7 +5,7 @@
     "icons": [
       {
         "src": "heart.ico",
-        "sizes": "36x36"
+        "sizes": "256x256"
       }   
     ],
     "theme_color": "#000000",
