@@ -1,6 +1,4 @@
-// var mymap = L.map('mapid').setView([47.583807, 12.1736679], 9);      //location of fh kufstein
-
-var bounds = L.latLngBounds([47.45, 12.0], [47.589, 12.19])             //location with innsbruck (for testing)
+var bounds = L.latLngBounds([47.5836, 12.17], [47.583, 12.175])             //location with innsbruck (for testing)
 mymap = L.map('mapid').fitBounds(bounds);
 
 var LeafIcon = L.Icon.extend({
@@ -29,7 +27,7 @@ var destCoord = [                                                               
     [47.583857, 12.173679],
     [47.583707, 12.173279],
     [47.583707, 12.173679],
-    [47.554475, 12.158497]];               
+    [47.5836, 12.1724]];               
 var destMarker1 = L.marker(destCoord[0], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarker2 = L.marker(destCoord[1], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
 var destMarker3 = L.marker(destCoord[2], {icon: toDoIcon}).bindPopup("Coffee?").addTo(mymap);
@@ -45,6 +43,7 @@ var lineCnt = 0;
 //end: delete after testing
                                                                         //current position marker
 mymap.removeControl(mymap.zoomControl);
+mymap.scrollWheelZoom.disable();
 
 if (!navigator.geolocation){
     alert("Geolocation is not supported by your browser");
@@ -113,7 +112,7 @@ if (!navigator.geolocation){
         distanceFilter      : 1													//in meters
     };
     
-    setInterval(getPosition, 400);
+    setInterval(getPosition, 2000);
     //navWatch = navigator.geolocation.watchPosition(success, error, geo_options);
     function getPosition(){
         navWatch = navigator.geolocation.getCurrentPosition(success, error, geo_options);
