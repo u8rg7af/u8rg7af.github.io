@@ -1,14 +1,14 @@
+
 {
-    "name": "EBMI Map App",
-    "short_name": "MapApp",
-    "start_url": "/",
-    "icons": [{
-      "src": "heart_big.png",
-      "sizes": "512x512",
-      "type": "image/png"
-    }],
-    "theme_color": "#000000",
-    "background_color": "#FFFFFF",
-    "display": "browser",
-    "orientation": "portrait"
-  }
+  "name": "EBMI WebApp",
+  "short_name": "WebApp",
+  "start_url": "/",
+  "display": "standalone",
+  "icons": [{
+    "src": "heart_big.png",
+    "sizes": "512x512",
+    "type": "image/png"
+  }],
+  "background_color": "#ffffff",
+  "theme_color": "#ffffff"
+}
