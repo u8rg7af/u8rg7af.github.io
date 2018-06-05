@@ -1,3 +1,5 @@
+
+
 var navigator = require('navigator');
 var W3CWebSocket = require('websocket').w3cwebsocket;
 
@@ -10,6 +12,7 @@ var msg = {
     date: Date.now()
 };
 
+//var client = new WebSocket("ws://80.122.77.19:5003");
 var client = new W3CWebSocket('ws://80.122.77.19:5003/', 'echo-protocol');
  
 client.onerror = function() {
@@ -46,17 +49,20 @@ function sendPosition(position) {
 
 function sendLocation() {
     client.send('hallo');
-    /*
+    console.log('ok');
+    
+    
     if (client.readyState === client.OPEN) {
 
         getLocation();
         //client.send(JSON.stringify(msg));
         client.send(msg.latitude);
         client.send(msg.longitude);
-
+    
         
     }
-    */
+    
+    
 
 }
 
@@ -66,5 +72,7 @@ function getLocation() {
             
         } 
 }
+//setTimeout(function(){ alert("Hello"); }, 1000);
+setInterval(sendLocation, 2000);
 
-setTimeout(sendLocation, 2000);
+
